@@ -15,39 +15,27 @@ public class Main {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yy");
 
         System.out.println("Введите дату в формате ДД.ММ.ГГ (например, 08.01.20).");
-        System.out.println("Для выхода введите 'exit'.");
+        System.out.print("Введите дату: ");
+        
+        String input = scanner.nextLine();
+        
+        try {
+            // Преобразуем строку в объект LocalDate
+            LocalDate date = LocalDate.parse(input, formatter);
 
-        while (true) {
-            System.out.print("Введите дату: ");
-            String input = scanner.nextLine();
-
-            // Проверяем, хочет ли пользователь выйти
-            if (input.equalsIgnoreCase("exit")) {
-                System.out.println("Выход из программы. До свидания!");
-                break;
+            // Проверяем диапазон годов
+            if (date.getYear() < 2020 || date.getYear() > 2022) {
+                System.out.println("Ошибка: введите дату в диапазоне с 2020 по 2022 год.");
             }
 
-            try {
-                // Преобразуем строку в объект LocalDate
-                LocalDate date = LocalDate.parse(input, formatter);
+            // Получаем номер недели
+            int weekNumber = getWeekNumber(date);
 
-                // Проверяем диапазон годов
-                if (date.getYear() < 2020 || date.getYear() > 2022) {
-                    System.out.println("Ошибка: введите дату в диапазоне с 2020 по 2022 год.");
-                    continue;
-                }
-
-                // Получаем номер недели
-                int weekNumber = getWeekNumber(date);
-
-                // Выводим результат
-                System.out.println("Неделя " + weekNumber);
-            } catch (Exception e) {
-                System.out.println("Ошибка: неверный формат даты. Убедитесь, что используете ДД.ММ.ГГ.");
-            }
+            // Выводим результат
+            System.out.println("Неделя " + weekNumber);
+        } catch (Exception e) {
+            System.out.println("Ошибка: неверный формат даты. Убедитесь, что используете ДД.ММ.ГГ.");
         }
-
-        scanner.close();
     }
 
     private static int getWeekNumber(LocalDate date) {
