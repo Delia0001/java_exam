@@ -33,7 +33,8 @@ public class Main {
 
             // Выводим результат
             System.out.println("Неделя " + weekNumber);
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             System.out.println("Ошибка: неверный формат даты. Убедитесь, что используете ДД.ММ.ГГ.");
         }
     }
