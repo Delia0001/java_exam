@@ -8,7 +8,7 @@ import java.time.temporal.WeekFields;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class Task_10 {
+public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
